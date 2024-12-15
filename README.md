@@ -12,7 +12,7 @@ To add configuration to your config:
 
   outputs = { mods, home-manager, ... }: {
     homeConfigurations.ilya = {
-	  # ...
+      # ...
       modules = [
         mods.homeManagerModules.mods
       ];
