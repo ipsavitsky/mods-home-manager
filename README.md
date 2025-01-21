@@ -3,8 +3,10 @@
 This flake exposes a home manager module that is used to configure [charmbracelet/mods](https://github.com/charmbracelet/mods).
 
 ## Example
+
 To add configuration to your config:
-``` nix
+
+```nix
 {
   inputs = {
     mods.url = "github:ipsavitsky/mods-home-manager";
@@ -22,7 +24,8 @@ To add configuration to your config:
 ```
 
 To configure the module:
-``` nix
+
+```nix
 { ... }:
 {
   programs.mods = {

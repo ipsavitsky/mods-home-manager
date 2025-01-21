@@ -1,9 +1,17 @@
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
   outputs =
     {
       self,
       nixpkgs,
+      treefmt,
     }:
     let
       system = "x86_64-linux";
@@ -12,7 +20,7 @@
       };
     in
     {
-      formatter.${system} = pkgs.nixfmt-rfc-style;
+      formatter.${system} = (treefmt.lib.evalModule pkgs ./treefmt.nix).config.build.wrapper;
 
       devShells.${system} = {
         default = pkgs.mkShell {
