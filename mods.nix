@@ -42,21 +42,22 @@ in
       description = ''
         Configuration written to
         {file}`$XDG_CONFIG_HOME/mods/mods.yml`.
+
         See <https://github.com/charmbracelet/mods/blob/main/config_template.yml> for the full
         list of options.
       '';
     };
 
     enableBashIntegration = mkEnableOption "Bash integration" // {
-      default = false;
+      default = true;
     };
 
     enableZshIntegration = mkEnableOption "Zsh integration" // {
-      default = false;
+      default = true;
     };
 
     enableFishIntegration = mkEnableOption "Fish integration" // {
-      default = false;
+      default = true;
     };
   };
 
@@ -69,19 +70,19 @@ in
 
     programs.bash.initExtra = mkIf cfg.enableBashIntegration (
       mkOrder 200 ''
-        source <(${pkgs.mods}/bin/mods completion bash)
+        source <(${cfg.package}/bin/mods completion bash)
       ''
     );
 
     programs.zsh.initExtra = mkIf cfg.enableZshIntegration (
       mkOrder 200 ''
-        source <(${pkgs.mods}/bin/mods completion zsh)
+        source <(${cfg.package}/bin/mods completion zsh)
       ''
     );
 
     programs.fish.interactiveShellInit = mkIf cfg.enableFishIntegration (
       mkOrder 200 ''
-        ${pkgs.mods}/bin/mods completion fish | source
+        ${cfg.package}/bin/mods completion fish | source
       ''
     );
   };
