@@ -1,3 +1,6 @@
+> [!WARNING]
+> This module is upstreamed into home-manager and no longer maintained, use the upstream module https://github.com/nix-community/home-manager/pull/6339
+
 # Mods `home-manager` flake
 
 This flake exposes a home manager module that is used to configure [charmbracelet/mods](https://github.com/charmbracelet/mods).
